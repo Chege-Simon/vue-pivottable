@@ -5,6 +5,7 @@ import Pivottable from './Pivottable'
 import TableRenderer from './TableRenderer'
 import { PivotData, getSort, sortAs, aggregators } from './helper/utils'
 import draggable from 'vuedraggable'
+
 export default {
   name: 'vue-pivottable-ui',
   mixins: [
@@ -283,7 +284,10 @@ export default {
       })
     },
     assignValue (field) {
-      this.$set(this.propsData.valueFilter, field, {})
+      this.propsData.valueFilter = {
+        ...this.propsData.valueFilter,
+        [field]: {}
+      }
     },
     propUpdater (key) {
       return value => {
@@ -291,14 +295,20 @@ export default {
       }
     },
     updateValueFilter ({ attribute, valueFilter }) {
-      this.$set(this.propsData.valueFilter, attribute, valueFilter)
+      this.propsData.valueFilter = {
+        ...this.propsData.valueFilter,
+        [attribute]: valueFilter
+      }
     },
     moveFilterBoxToTop ({ attribute }) {
       this.maxZIndex += 1
       this.zIndices[attribute] = this.maxZIndex + 1
     },
     openFilterBox ({ attribute, open }) {
-      this.$set(this.openStatus, attribute, open)
+      this.propsData.valueFilter = {
+        ...this.propsData.valueFilter,
+        [attribute]: open
+      }
     },
     closeFilterBox (event) {
       this.openStatus = {}
