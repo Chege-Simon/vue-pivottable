@@ -495,7 +495,7 @@ export default {
   },
   render (h) {
     if (this.data.length < 1) return
-    const outputScopedSlot = this.$scopedSlots.output
+    const outputScopedSlot = this.$scopedSlots?.output
     const outputSlot = this.$slots.output
     const rendererName = this.propsData.rendererName
     const aggregatorName = this.propsData.aggregatorName
