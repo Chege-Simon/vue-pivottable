@@ -344,7 +344,7 @@ export default {
       this.attrValues = attrValues
     },
     makeDnDCell (items, onChange, classes, h) {
-      const scopedSlots = this.$scopedSlots.pvtAttr
+      const scopedSlots = this.$scopedSlots?.pvtAttr
       return h(draggable, {
         attrs: {
           draggable: 'li[data-id]',
